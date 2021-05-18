@@ -40,21 +40,24 @@ class DictionaryGraph:
                             visited[j] = 1
                             queue.append(j)
 
+        # max_colors = max(self.colours)
         print(max_colors)
 
 
 class MainProgram:
     def __init__(self):
-        file = open("input.txt", "r")
+        file = open("graphs10k.txt", "r")
         number_of_vertices, number_of_edges = map(int, file.readline().split())
         self.g = DictionaryGraph(int(number_of_vertices))
 
         for edge in range(number_of_edges):
-            x, y = map(int, file.readline().split())
+            x, y, cost = map(int, file.readline().split())
             self.g.add_edge(x, y)
 
     def run(self):
         self.g.minimum_coloring_graph()
+        for vertex in range(self.g.vertices):
+            print("Vertex ", vertex, " has colour ", self.g.colours[vertex])
 
 
 program = MainProgram()
